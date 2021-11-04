@@ -14,7 +14,7 @@ import (
 
 // Function to upload item
 func uploadItem(sess *session.Session) {
-	f, err := os.Open("03-downloads-and-uploads/my-file.ext")
+	f, err := os.Open("my-file.ext")
 	if err != nil {
 		log.Fatal("could not open file")
 	}
@@ -95,7 +95,7 @@ func deleteItem(sess *session.Session) {
 }
 
 func main() {
-	fmt.Println("Listing Buckets")
+	fmt.Println("AWS S3 download and upload")
 
 	sess, err := session.NewSession(&aws.Config{
 		Region: aws.String("us-west-2")},
