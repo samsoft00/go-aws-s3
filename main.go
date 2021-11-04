@@ -14,7 +14,7 @@ import (
 
 // Function to upload item
 func uploadItem(sess *session.Session) {
-	f, err := os.Open("my-file.ext")
+	f, err := os.Open("downloads-and-uploads/my-file.ext")
 	if err != nil {
 		log.Fatal("could not open file")
 	}
@@ -45,17 +45,17 @@ func listBucketItems(sess *session.Session){
 
 	if err != nil {}
 	for _, item := range resp.Contents {
-		fmt.Println("Name:		", *item.Key)
-		fmt.Println("Last modified:", *item.LastModified)
-		fmt.Println("Size:		", *item.Size)
+		fmt.Println("Name:		   ", *item.Key)
+		fmt.Println("Size:		   ", *item.Size)
 		fmt.Println("Storage class:", *item.StorageClass)
+		fmt.Println("Last modified:", *item.LastModified)
 		fmt.Println("")
 	}
 }
 
 // Download items
 func downloadItem(sess *session.Session) {
-	file, err := os.Create("03-downloads-and-uploads/downloaded.txt")
+	file, err := os.Create("downloads-and-uploads/downloaded.txt")
 	if err != nil {}	
 	defer file.Close()
 
@@ -63,7 +63,7 @@ func downloadItem(sess *session.Session) {
 
 	// number of bytes downloaded or error
 	if _, err = downloader.Download(file, &s3.GetObjectInput{
-		Bucket: aws.String("go-aws-s3-course"),
+		Bucket: aws.String("go-aws-s3"),
 		Key: aws.String("my-file.txt"),
 	}); err != nil {
 		log.Fatal(err.Error())
